@@ -1,4 +1,3 @@
-import 'dotenv/config'
 import { Client, Account} from 'appwrite';
 
 

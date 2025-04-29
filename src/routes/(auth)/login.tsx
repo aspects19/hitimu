@@ -1,6 +1,7 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { useState } from 'react';
 import { account, ID } from "../../lib/appwrite";
+import { IoMdEyeOff, IoMdEye } from "react-icons/io";
 
 export const Route = createFileRoute('/(auth)/login')({
   component: Login,
@@ -11,6 +12,7 @@ function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
+  const [showPassword, setshowPassword] = useState(false);
 
   async function login(email: string, password: string) {
     try {
@@ -26,6 +28,7 @@ function Login() {
 
   return (
     <div className='flex flex-col w-full items-center pt-6'>
+
       <div className="navbar bg-base-300 shadow-sm">
         <div className="flex-1">
           <a className="btn btn-ghost text-xl">
@@ -62,6 +65,8 @@ function Login() {
       </p>
 
       <form className='flex flex-col mt-16'>
+
+        {/* email validator */}
         <label className="input validator">
           <svg className="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
             <g
@@ -75,11 +80,22 @@ function Login() {
               <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
             </g>
           </svg>
-          <input type="email" placeholder="mail@site.com" required value={email} onChange={e => setEmail(e.target.value)} />
+          <input 
+            type="email" 
+            placeholder="mail@site.com" 
+            required 
+            value={email} 
+            onChange={e => setEmail(e.target.value)} 
+            />
         </label>
-        <div className="validator-hint hidden">Enter valid email address</div>
+        <div className="validator-hint ">Enter valid email address</div>
 
-        <input type="password" placeholder="Password" value={password} onChange={e => setPassword(e.target.value)} />
+        <input 
+          type="password" 
+          placeholder="Password" 
+          value={password} 
+          onChange={e => setPassword(e.target.value)} 
+        />
         <label className="input validator">
           <svg className="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
             <g
@@ -96,12 +112,15 @@ function Login() {
             </g>
           </svg>
           <input
-            type="password"
+            type={showPassword ? 'text' : 'password'}
             required
             placeholder="Password"
             pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
             title="Must be more than 8 characters, including number, lowercase letter, uppercase letter"
           />
+          <span className='text-gray-500/25 cursor-pointer ' onClick={()=>setshowPassword(!showPassword)}>
+            {showPassword ? <IoMdEyeOff size={20} /> : <IoMdEye size={20} />}
+          </span>
         </label>
         <p className="validator-hint hidden">
           Must be more than 8 characters, including
