@@ -1,30 +1,36 @@
-import { createFileRoute } from '@tanstack/react-router'
+import { createFileRoute, Navigate } from '@tanstack/react-router'
 import { useState } from 'react';
-import { account, ID } from "../../lib/appwrite";
 import { IoMdEyeOff, IoMdEye } from "react-icons/io";
+
+import { useUser } from '../../context/user';
+import { AuthedGuard } from '../../utils/guard';
 
 export const Route = createFileRoute('/(auth)/signup')({
   component: Signup,
-})
+  beforeLoad: async () => AuthedGuard()
+});
 
 function Signup() {
-  const [loggedInUser, setLoggedInUser] = useState(null);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
   const [showPassword, setshowPassword] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-  async function login(email: string, password: string) {
+  const {signup, user} = useUser();
+
+  async function handleSignup(e : React.FormEvent) {
+    e.preventDefault();
     try {
-      await account.createEmailPasswordSession(email, password);
-      setLoggedInUser(await account.get());
-      
-    } catch (error) {
-      console.error('Login error:', error);
-      return;
-      
+      await signup(email, password, name);
+      <Navigate to='/'/>
+    } catch(e) {
+      setError("Error setting account. Try again")
+      console.error(e);
     }
-  }
+  };
+
+  if (user) return <Navigate to='/' />
 
   return (
     <div className='flex flex-col w-full items-center pt-6'>
@@ -59,11 +65,9 @@ function Signup() {
           </div>
         </div>
       </div>
-      <p>
-        {loggedInUser ? `Logged in as YOu` : 'Not logged in'}
-      </p>
-
-      <form className='flex flex-col'>
+      {error && <p className="text-red-500">{error}</p>}
+      <form className='flex flex-col' onSubmit={handleSignup}>
+        <span className='mt-6'>Email</span>
         <label className="input validator">
           <svg className="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
             <g
@@ -81,7 +85,7 @@ function Signup() {
         </label>
         <div className="validator-hint hidden">Enter valid email address</div>
 
-        <input type="password" placeholder="Password" value={password} onChange={e => setPassword(e.target.value)} />
+        <span className='mt-6'>Password</span>
         <label className="input validator">
                   <svg className="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                     <g
@@ -103,6 +107,8 @@ function Signup() {
                     placeholder="Password"
                     pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
                     title="Must be more than 8 characters, including number, lowercase letter, uppercase letter"
+                    onChange={e => setPassword(e.target.value)}
+                    value={password}
                   />
                   <span className='text-gray-500/25 cursor-pointer ' onClick={()=>setshowPassword(!showPassword)}>
                     {showPassword ? <IoMdEyeOff size={20} /> : <IoMdEye size={20} />}
@@ -113,7 +119,7 @@ function Signup() {
           <br />At least one number <br />At least one lowercase letter <br />At least one uppercase letter
         </p>
 
-        <input type="text" placeholder="Name" value={name} onChange={e => setName(e.target.value)} />
+        <span className='mt-6'>Name</span>
         <label className="input validator">
           <svg className="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
             <g
@@ -146,31 +152,17 @@ function Signup() {
         <div className='flex justify-around flex-row gap-4 px-4'>
         <button
             className="btn btn-outline btn-accent"
-            type="button"
-            onClick={async () => {
-              await account.create(ID.unique(), email, password, name);
-              login(email, password);
-            }}
+            type="submit"
             >
             Register
           </button>
           
-          <button className="btn btn-outline btn-accent" type="button" onClick={() => login(email, password)}>
+          <button className="btn btn-outline btn-accent" type="button">
             Login
           </button>
-
-          {/* <button
-            className="btn btn-outline btn-accent"
-            type="button"
-            onClick={async () => {
-              await account.deleteSession('current');
-              setLoggedInUser(null);
-            }}
-            >
-            Logout
-          </button> */}
         </div>
       </form>
+
       <div className="flex flex-col gap-4 mt-8">
         
         <button className="btn bg-black text-white border-black">

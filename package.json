@@ -15,7 +15,6 @@
     "@tanstack/react-router-devtools": "^1.117.0",
     "appwrite": "^17.0.2",
     "daisyui": "^5.0.28",
-    "dotenv": "^16.5.0",
     "react": "^19.0.0",
     "react-countup": "^6.5.3",
     "react-dom": "^19.0.0",

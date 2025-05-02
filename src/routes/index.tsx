@@ -1,20 +1,19 @@
-import { createFileRoute } from '@tanstack/react-router'
-import { useState } from 'react';
+import { createFileRoute, useNavigate } from '@tanstack/react-router'
 import CountUp from 'react-countup';
 import { PiStudentFill } from "react-icons/pi";
 import { FaUniversity } from "react-icons/fa";
 import { ImBooks } from "react-icons/im";
+
+import { useUser } from '../context/user';
 
 export const Route = createFileRoute('/')({
   component: Index,
 })
 
 function Index() {
-  const [loggedIn, setLoggedIn] = useState(true);
-
-  const handleLogin = () => {
-    setLoggedIn(!loggedIn);
-  };
+  
+  const {user, logout} = useUser();
+  const navigate = useNavigate();
 
   return (
     <div className='flex flex-col items-center'>
@@ -29,29 +28,17 @@ function Index() {
           <div className="dropdown dropdown-end">
             <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
               <div className="w-10 rounded-full">
-                { loggedIn ? 
-                  <img
+                <img
                   alt="Tailwind CSS Navbar component"
-                  src="/assets/default-pp.webp" 
+                  src={user ? "/assets/default-pp.webp" : "/assets/no-user.png"} 
                 />
-                :
-                <button onClick={handleLogin} className="btn btn-primary">
-                  Login
-                </button>
-                }
               </div>
             </div>
             <ul
               tabIndex={0}
               className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
-              <li>
-                <a className="justify-between">
-                  Profile
-                  <span className="badge">New</span>
-                </a>
-              </li>
-              <li><a>Settings</a></li>
-              <li><a>Logout</a></li>
+              <li  onClick={()=>{throw navigate({to: '/profile'});}}><a> Profile </a></li>
+              <li onClick={logout}><a>Logout</a></li>
             </ul>
           </div>
         </div>
