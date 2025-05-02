@@ -1,4 +1,4 @@
-import { createFileRoute, Navigate } from '@tanstack/react-router'
+import { createFileRoute, redirect } from '@tanstack/react-router'
 import { useState } from 'react';
 import { IoMdEyeOff, IoMdEye } from "react-icons/io";
 
@@ -17,20 +17,19 @@ function Signup() {
   const [showPassword, setshowPassword] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const {signup, user} = useUser();
+  const { signup } = useUser();
 
   async function handleSignup(e : React.FormEvent) {
     e.preventDefault();
     try {
       await signup(email, password, name);
-      <Navigate to='/'/>
+      throw redirect({to: "/"})
     } catch(e) {
       setError("Error setting account. Try again")
       console.error(e);
     }
   };
 
-  if (user) return <Navigate to='/' />
 
   return (
     <div className='flex flex-col w-full items-center pt-6'>

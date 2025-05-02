@@ -24,7 +24,7 @@ function Login() {
     e.preventDefault();
     try {
       await login(email, password);
-      throw navigate({to: '/', replace: true});
+      throw navigate({to: '/'});
     } catch (err) {
       setError("Error setting account. Try again")
       console.error(err)

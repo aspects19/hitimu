@@ -1,7 +1,9 @@
 import { createFileRoute } from '@tanstack/react-router'
+import { GuestGuard } from '../../utils/guard';
 
 export const Route = createFileRoute('/(tabs)/profile')({
   component: RouteComponent,
+  beforeLoad: async() => GuestGuard()
 })
 
 function RouteComponent() {
