@@ -4,6 +4,7 @@ import { PiStudentFill } from "react-icons/pi";
 import { FaUniversity } from "react-icons/fa";
 import { ImBooks } from "react-icons/im";
 
+import SearchBar from '../components/search';
 import { useUser } from '../context/user';
 
 export const Route = createFileRoute('/')({
@@ -17,6 +18,7 @@ function Index() {
 
   return (
     <div className='flex flex-col items-center'>
+      {/* To be moved */}
       <div className="navbar bg-base-100 shadow-sm">
         <div className="flex-1">
           <a className="btn btn-ghost text-xl">
@@ -49,24 +51,7 @@ function Index() {
         Lecture notes, past papers, and more! <br/>
         <span className="text-xl font-normal">All in one place</span>
       </p>
-      <div className="flex flex-col md:flex-row items-center mt-5">
-        <label className="input mt-10">
-          <svg className="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-            <g
-              strokeLinejoin="round"
-              strokeLinecap="round"
-              strokeWidth="2.5"
-              fill="none"
-              stroke="currentColor"
-            >
-              <circle cx="11" cy="11" r="8"></circle>
-              <path d="m21 21-4.3-4.3"></path>
-            </g>
-          </svg>
-          <input type="search" required placeholder="Search" />
-        </label>
-        <button className="btn w-full mx-[-7px] md:w-16 md:mt-10 md:ml-[-7px] btn-primary mt-2">Search</button>
-      </div>
+      <SearchBar/>
       <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-10'>
         
         <div className=" flex items-center stat card bg-base-100 shadow-sm">

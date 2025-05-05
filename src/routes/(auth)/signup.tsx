@@ -33,40 +33,10 @@ function Signup() {
 
   return (
     <div className='flex flex-col w-full items-center pt-6'>
-      <div className="navbar bg-base-300 shadow-sm">
-        <div className="flex-1">
-          <a className="btn btn-ghost text-xl">
-          <img className='h-10 ml-4 mr-auto' src='/assets/hitimu-logo.png'/>
-          </a>
-        </div>
-        <div className="flex gap-2">
-          <input type="text" placeholder="Search" className="input input-bordered w-24 md:w-auto" />
-          <div className="dropdown dropdown-end">
-            <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
-              <div className="w-10 rounded-full">
-                <img
-                  alt="Tailwind CSS Navbar component"
-                  src="/assets/default-pp.webp" />
-              </div>
-            </div>
-            <ul
-              tabIndex={0}
-              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
-              <li>
-                <a className="justify-between">
-                  Profile
-                  <span className="badge">New</span>
-                </a>
-              </li>
-              <li><a>Settings</a></li>
-              <li><a>Logout</a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
+			
       {error && <p className="text-red-500">{error}</p>}
       <form className='flex flex-col' onSubmit={handleSignup}>
-        <span className='mt-6'>Email</span>
+        <span className='mt-6 mb-1 ml-1 '>Email</span>
         <label className="input validator">
           <svg className="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
             <g
@@ -84,7 +54,7 @@ function Signup() {
         </label>
         <div className="validator-hint hidden">Enter valid email address</div>
 
-        <span className='mt-6'>Password</span>
+        <span className='mt-4 mb-1 ml-1'>Password</span>
         <label className="input validator">
                   <svg className="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                     <g
@@ -118,7 +88,7 @@ function Signup() {
           <br />At least one number <br />At least one lowercase letter <br />At least one uppercase letter
         </p>
 
-        <span className='mt-6'>Name</span>
+        <span className='mt-4 mb-1 ml-1'>Name</span>
         <label className="input validator">
           <svg className="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
             <g
@@ -148,17 +118,10 @@ function Signup() {
           Must be 3 to 30 characters
           <br />containing only letters, numbers or dash
         </p>
-        <div className='flex justify-around flex-row gap-4 px-4'>
-        <button
-            className="btn btn-outline btn-accent"
-            type="submit"
-            >
-            Register
-          </button>
-          
-          <button className="btn btn-outline btn-accent" type="button">
-            Login
-          </button>
+        
+        <div className=' flex flex-col mr-12 gap-4 items-center'>
+          <button className=" btn min-w-[322px] btn-outline btn-accent w-full" type="submit" > Login </button>
+          <p >Have an account already? <a href='/login' className=' link-primary'>Sign in</a></p>
         </div>
       </form>
 

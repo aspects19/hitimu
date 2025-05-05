@@ -12,10 +12,10 @@
 
 import { Route as rootRoute } from './routes/__root'
 import { Route as UploadImport } from './routes/upload'
-import { Route as SearchImport } from './routes/search'
-import { Route as AboutImport } from './routes/about'
 import { Route as IndexImport } from './routes/index'
+import { Route as tabsSearchImport } from './routes/(tabs)/search'
 import { Route as tabsProfileImport } from './routes/(tabs)/profile'
+import { Route as tabsAboutImport } from './routes/(tabs)/about'
 import { Route as authSignupImport } from './routes/(auth)/signup'
 import { Route as authLoginImport } from './routes/(auth)/login'
 
@@ -27,27 +27,27 @@ const UploadRoute = UploadImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
-const SearchRoute = SearchImport.update({
-  id: '/search',
-  path: '/search',
-  getParentRoute: () => rootRoute,
-} as any)
-
-const AboutRoute = AboutImport.update({
-  id: '/about',
-  path: '/about',
-  getParentRoute: () => rootRoute,
-} as any)
-
 const IndexRoute = IndexImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRoute,
 } as any)
 
+const tabsSearchRoute = tabsSearchImport.update({
+  id: '/(tabs)/search',
+  path: '/search',
+  getParentRoute: () => rootRoute,
+} as any)
+
 const tabsProfileRoute = tabsProfileImport.update({
   id: '/(tabs)/profile',
   path: '/profile',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const tabsAboutRoute = tabsAboutImport.update({
+  id: '/(tabs)/about',
+  path: '/about',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -74,20 +74,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexImport
       parentRoute: typeof rootRoute
     }
-    '/about': {
-      id: '/about'
-      path: '/about'
-      fullPath: '/about'
-      preLoaderRoute: typeof AboutImport
-      parentRoute: typeof rootRoute
-    }
-    '/search': {
-      id: '/search'
-      path: '/search'
-      fullPath: '/search'
-      preLoaderRoute: typeof SearchImport
-      parentRoute: typeof rootRoute
-    }
     '/upload': {
       id: '/upload'
       path: '/upload'
@@ -109,11 +95,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof authSignupImport
       parentRoute: typeof rootRoute
     }
+    '/(tabs)/about': {
+      id: '/(tabs)/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof tabsAboutImport
+      parentRoute: typeof rootRoute
+    }
     '/(tabs)/profile': {
       id: '/(tabs)/profile'
       path: '/profile'
       fullPath: '/profile'
       preLoaderRoute: typeof tabsProfileImport
+      parentRoute: typeof rootRoute
+    }
+    '/(tabs)/search': {
+      id: '/(tabs)/search'
+      path: '/search'
+      fullPath: '/search'
+      preLoaderRoute: typeof tabsSearchImport
       parentRoute: typeof rootRoute
     }
   }
@@ -123,77 +123,77 @@ declare module '@tanstack/react-router' {
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/about': typeof AboutRoute
-  '/search': typeof SearchRoute
   '/upload': typeof UploadRoute
   '/login': typeof authLoginRoute
   '/signup': typeof authSignupRoute
+  '/about': typeof tabsAboutRoute
   '/profile': typeof tabsProfileRoute
+  '/search': typeof tabsSearchRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/about': typeof AboutRoute
-  '/search': typeof SearchRoute
   '/upload': typeof UploadRoute
   '/login': typeof authLoginRoute
   '/signup': typeof authSignupRoute
+  '/about': typeof tabsAboutRoute
   '/profile': typeof tabsProfileRoute
+  '/search': typeof tabsSearchRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
-  '/about': typeof AboutRoute
-  '/search': typeof SearchRoute
   '/upload': typeof UploadRoute
   '/(auth)/login': typeof authLoginRoute
   '/(auth)/signup': typeof authSignupRoute
+  '/(tabs)/about': typeof tabsAboutRoute
   '/(tabs)/profile': typeof tabsProfileRoute
+  '/(tabs)/search': typeof tabsSearchRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
-    | '/about'
-    | '/search'
     | '/upload'
     | '/login'
     | '/signup'
+    | '/about'
     | '/profile'
+    | '/search'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/search' | '/upload' | '/login' | '/signup' | '/profile'
+  to: '/' | '/upload' | '/login' | '/signup' | '/about' | '/profile' | '/search'
   id:
     | '__root__'
     | '/'
-    | '/about'
-    | '/search'
     | '/upload'
     | '/(auth)/login'
     | '/(auth)/signup'
+    | '/(tabs)/about'
     | '/(tabs)/profile'
+    | '/(tabs)/search'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  AboutRoute: typeof AboutRoute
-  SearchRoute: typeof SearchRoute
   UploadRoute: typeof UploadRoute
   authLoginRoute: typeof authLoginRoute
   authSignupRoute: typeof authSignupRoute
+  tabsAboutRoute: typeof tabsAboutRoute
   tabsProfileRoute: typeof tabsProfileRoute
+  tabsSearchRoute: typeof tabsSearchRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  AboutRoute: AboutRoute,
-  SearchRoute: SearchRoute,
   UploadRoute: UploadRoute,
   authLoginRoute: authLoginRoute,
   authSignupRoute: authSignupRoute,
+  tabsAboutRoute: tabsAboutRoute,
   tabsProfileRoute: tabsProfileRoute,
+  tabsSearchRoute: tabsSearchRoute,
 }
 
 export const routeTree = rootRoute
@@ -207,22 +207,16 @@ export const routeTree = rootRoute
       "filePath": "__root.tsx",
       "children": [
         "/",
-        "/about",
-        "/search",
         "/upload",
         "/(auth)/login",
         "/(auth)/signup",
-        "/(tabs)/profile"
+        "/(tabs)/about",
+        "/(tabs)/profile",
+        "/(tabs)/search"
       ]
     },
     "/": {
       "filePath": "index.tsx"
-    },
-    "/about": {
-      "filePath": "about.tsx"
-    },
-    "/search": {
-      "filePath": "search.tsx"
     },
     "/upload": {
       "filePath": "upload.tsx"
@@ -233,8 +227,14 @@ export const routeTree = rootRoute
     "/(auth)/signup": {
       "filePath": "(auth)/signup.tsx"
     },
+    "/(tabs)/about": {
+      "filePath": "(tabs)/about.tsx"
+    },
     "/(tabs)/profile": {
       "filePath": "(tabs)/profile.tsx"
+    },
+    "/(tabs)/search": {
+      "filePath": "(tabs)/search.tsx"
     }
   }
 }
