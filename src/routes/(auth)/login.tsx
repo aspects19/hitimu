@@ -35,12 +35,12 @@ function Login() {
 
   
   return (
-    <div className='flex flex-col w-full items-center pt-6'>
+    <div className='flex flex-col w-full items-center pt-10 '>
   
       {error && <p className="text-red-500">{error}</p>}
-      <form className='flex ml-10 flex-col mt-13 ' onSubmit={HandleLogin}>
+      <form className='flex mx-auto flex-col mt-13  items-center' onSubmit={HandleLogin}>
 
-        <span>Email</span>
+        <span className='input-label mt-1 mb-1 ml-1 mr-auto'>Email</span>
         <label className="input validator">
           <svg className="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
             <g
@@ -64,7 +64,7 @@ function Login() {
         </label>
         <div className="validator-hint ">Enter valid email address</div>
 
-        <span>Password</span>
+        <span className='input-label mb-1 ml-1 mr-auto'>Password</span>
         <label className="input validator">
           <svg className="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
             <g
@@ -98,7 +98,7 @@ function Login() {
           <br />At least one number <br />At least one lowercase letter <br />At least one uppercase letter
         </p>
 
-        <div className='mt-8 flex flex-col mr-12 gap-4 items-center'>
+        <div className='mt-8 flex flex-col gap-4'>
           <button className=" btn min-w-[322px] btn-outline btn-accent w-full" type="submit" > Login </button>
           <p >Don't have an account yet? <a href='/signup' className=' link-primary'>Sign up</a></p>
         </div>

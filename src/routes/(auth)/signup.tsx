@@ -38,6 +38,7 @@ function Signup() {
 			
       {error && <p className="text-red-500">{error}</p>}
       <form className='flex mx-auto items-center pt-5 flex-col' onSubmit={handleSignup}>
+        
         <span className='input-label mt-4 mb-1 ml-1 mr-auto'>Email</span>
         <label className="input validator">
           <svg className="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -121,7 +122,7 @@ function Signup() {
           <br />containing only letters, numbers or dash
         </p>
         
-        <div className=' flex flex-col  '>
+        <div className=' flex flex-col gap-4 '>
           <button className=" btn min-w-[322px] btn-outline btn-accent w-full" type="submit" > Login </button>
           <p >Have an account already? <a href='/login' className=' link-primary'>Sign in</a></p>
         </div>
