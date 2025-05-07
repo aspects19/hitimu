@@ -14,7 +14,7 @@ const Navbar: React.FC<NavbarProps> = ({ placeholder = "Search" }) => {
     <div className="navbar bg-base-100 shadow-sm">
       <div className="flex-1">
         <a className="btn btn-ghost text-xl">
-          <img className="h-8 ml-4 mr-auto" src="/public/assets/hitimu-logo.png" alt="Logo" />
+          <img className="h-8 ml-4 mr-auto" src="/assets/hitimu-logo.png" alt="Logo" />
         </a>
       </div>
       <div className="flex gap-2">
