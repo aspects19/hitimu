@@ -1,4 +1,4 @@
-import { createFileRoute, redirect } from '@tanstack/react-router'
+import { createFileRoute, useNavigate } from '@tanstack/react-router'
 import { useState } from 'react';
 import { IoMdEyeOff, IoMdEye } from "react-icons/io";
 
@@ -19,12 +19,13 @@ function Signup() {
   const [error, setError] = useState<string | null>(null);
 
   const { signup } = useUser();
+  const navigate = useNavigate();
 
   async function handleSignup(e : React.FormEvent) {
     e.preventDefault();
     try {
       await signup(email, password, name);
-      throw redirect({to: "/"})
+      navigate({to: '/', replace: true})
     } catch (err) {
       if (err instanceof AppwriteException) {
         setError(err.message)
@@ -38,7 +39,7 @@ function Signup() {
 			
       {error && <p className="text-red-500">{error}</p>}
       <form className='flex mx-auto items-center pt-5 flex-col' onSubmit={handleSignup}>
-        
+
         <span className='input-label mt-4 mb-1 ml-1 mr-auto'>Email</span>
         <label className="input validator">
           <svg className="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -123,7 +124,7 @@ function Signup() {
         </p>
         
         <div className=' flex flex-col gap-4 '>
-          <button className=" btn min-w-[322px] btn-outline btn-accent w-full" type="submit" > Login </button>
+          <button className=" btn min-w-[322px] btn-outline btn-accent w-full" type="submit" > Register </button>
           <p >Have an account already? <a href='/login' className=' link-primary'>Sign in</a></p>
         </div>
       </form>

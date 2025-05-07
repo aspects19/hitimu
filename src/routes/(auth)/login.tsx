@@ -25,7 +25,7 @@ function Login() {
     e.preventDefault();
     try {
       await login(email, password);
-      throw navigate({to: '/'});
+      navigate({to: '/', replace: true});
     } catch (err) {
       if (err instanceof AppwriteException) {
         setError(err.message)
