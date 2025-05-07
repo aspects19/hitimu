@@ -22,7 +22,7 @@ export const database: Databases = new Databases(client);
 export const storage: Storage = new Storage(client);
 export const avatars: Avatars = new Avatars(client);
 
-export const uploadFile = async (userId: string, file: File, description: string) => {
+export const uploadFile = async (userId: string, file: File, title: string, description: string) => {
     const response = await storage.createFile(
         config.documentBucketId, 
         ID.unique(), 
@@ -41,7 +41,7 @@ export const uploadFile = async (userId: string, file: File, description: string
         ID.unique(),
         {
             documentId: response.$id,
-            title: file.name,
+            title: title,
             description: description,
             documentUrl: fileUrl,
             createdAt: new Date().toISOString(),

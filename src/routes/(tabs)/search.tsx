@@ -8,6 +8,7 @@ import SearchBar from '../../components/search';
 import DocumentList from '../../components/DocuList';
 import { useUser } from '../../context/user';
 import { getSearchDocs } from '../../lib/appwrite';
+import Footer from '../../components/Footer';
 
 const docsSearchSchema = z.object({
 	title: z.string().optional()
@@ -52,7 +53,7 @@ function RouteComponent() {
         <div className="card w-48 h-32 bg-base-200 animate-pulse"></div> :
         <DocumentList documents={docs} />
       }
-
+			<Footer/>
     </div>
   )
 }

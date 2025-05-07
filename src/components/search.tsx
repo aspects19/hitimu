@@ -14,7 +14,7 @@ function SearchBar() {
 
   return (
     <div className="flex flex-col md:flex-row items-center mt-5">
-      <label className="input mt-10">
+      <label className="input w-full mt-10">
         <svg className="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
           <g
             strokeLinejoin="round"
@@ -29,8 +29,8 @@ function SearchBar() {
         </svg>
         <input type="search" required placeholder="Search" value={query} onChange={(e) => setquery(e.target.value)} />
       </label>
-      <button className="btn w-full mx-[-7px] md:w-16 md:mt-10 md:ml-[-7px] btn-primary mt-2" onClick={handleSearch}>Search</button>
-      </div>
+      <button className=" flex btn w-full  md:w-16 md:mt-10 md:ml-[-7px] btn-accent mt-4" onClick={handleSearch}>Search</button>
+    </div>
   )
 }
 

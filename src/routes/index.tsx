@@ -1,5 +1,6 @@
 import { createFileRoute, useNavigate } from '@tanstack/react-router'
 import CountUp from 'react-countup';
+import Footer from '../components/Footer';
 import { PiStudentFill } from "react-icons/pi";
 import { FaUniversity } from "react-icons/fa";
 import { ImBooks } from "react-icons/im";
@@ -30,10 +31,13 @@ function Index() {
           <div className="dropdown dropdown-end">
             <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
               <div className="w-10 rounded-full">
-                <img
+                { user?
+                  <div className='flex items-center justify-center pb-1 h-10 rounded-full text-2xl font-extrabold bg-accent/30'>{user.name.toUpperCase()[0]}</div> :
+                  <img
                   alt="Tailwind CSS Navbar component"
-                  src={user ? "/assets/default-pp.webp" : "/assets/no-user.png"} 
-                />
+                  src="/assets/no-user.png"
+                /> 
+              }
               </div>
             </div>
             <ul
@@ -49,7 +53,7 @@ function Index() {
       <p className="text-2xl font-extrabold text-center mt-15">
         Get free study materials <br/>
         Lecture notes, past papers, and more! <br/>
-        <span className="text-xl font-normal">All in one place</span>
+        <span className="text-xl font-normal mt-4">All in one place</span><br/>
       </p>
       <SearchBar/>
       <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-10'>
@@ -79,6 +83,10 @@ function Index() {
         </div>
         
       </div>
+      <a href='/upload'>
+        <button className='btn btn-accent'>Add a study material</button>
+      </a>
+      <Footer/>
     </div>
   );
 };

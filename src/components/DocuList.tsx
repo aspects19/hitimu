@@ -17,16 +17,16 @@ const DocumentList = ({ documents }: { documents: Models.Document[] }) => {
     fetchPreviews();
   }, [documents]);
 
-  if (!documents.length) return <p>No documents found.</p>;
+  if (!documents.length) return <p className='mt-4' >No documents found.</p>;
 
   return (
-    <div className="grid grid-cols-1 gap-4">
+    <div className="grid grid-cols-1 mt-6 md:grid-cols-2 gap-4">
       {documents.map((doc: Models.Document) => (
         <div key={doc.$id} className="card bg-base-100 shadow-md p-4">
           <h3 className="text-lg font-semibold">{doc.title}</h3>
           <p className="text-sm text-gray-600">{doc.description}</p>
           <a
-            href={doc.fileUrl}
+            href={doc.documentUrl}
             target="_blank"
             rel="noopener noreferrer"
             className="btn btn-sm btn-outline mt-2"
