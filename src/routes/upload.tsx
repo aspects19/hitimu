@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useUser } from '../context/user';
 import { uploadFile } from '../lib/appwrite';
 import Footer from '../components/Footer';
+import { AppwriteException } from 'appwrite';
 
 export const Route = createFileRoute('/upload')({
   component: RouteComponent,
@@ -16,6 +17,7 @@ function RouteComponent() {
   const [title, setTitle] = useState<string>("");
   const [description, setDescription] = useState<string>("");
   const [uploadStatus, setUploadStatus] = useState<string | null>(null);
+  const [error, setError] = useState<string>("");
 
   const { user } = useUser();
 
@@ -42,10 +44,11 @@ function RouteComponent() {
       setTitle("")
       setDescription("");
   
-    } catch (error) {
-      console.error("Error uploading file:", error);
-      setUploadStatus('Error uploading file. Please try again.'); 
-    } 
+    } catch (err) {
+      if (err instanceof AppwriteException) {
+        setError(err.message)
+      }
+    }
     
   };
 
@@ -54,6 +57,7 @@ function RouteComponent() {
       <div className="max-w-md mx-auto p-4">
         <h2 className="text-2xl font-bold mb-4 text-center">Upload Study Material</h2>
         {uploadStatus && <p className="text-red-500">{uploadStatus}</p>}
+        {error && <p className='text-red-500/50'>{error}</p>}
         <div className='flex flex-col grow'>
           <input placeholder='Document title' className=' input mb-3' onChange={(e) => setTitle(e.target.value)} />
           <textarea placeholder="Description" className="textarea textarea-bordered mb-3" onChange={(e) =>setDescription(e.target.value)}></textarea> 

@@ -1,8 +1,9 @@
 import { createFileRoute, useNavigate } from '@tanstack/react-router'
 import { useState } from 'react';
 import { IoMdEyeOff, IoMdEye } from "react-icons/io";
-import { AuthedGuard } from '../../utils/guard';
+import { AppwriteException } from 'appwrite';
 
+import { AuthedGuard } from '../../utils/guard';
 
 import { useUser } from '../../context/user';
 
@@ -26,17 +27,18 @@ function Login() {
       await login(email, password);
       throw navigate({to: '/'});
     } catch (err) {
-      setError("Error setting account. Try again")
-      console.error(err)
+      if (err instanceof AppwriteException) {
+        setError(err.message)
+      }
     }
   };
 
   
   return (
     <div className='flex flex-col w-full items-center pt-6'>
-
+  
       {error && <p className="text-red-500">{error}</p>}
-      <form className='flex flex-col mt-13 ' onSubmit={HandleLogin}>
+      <form className='flex ml-10 flex-col mt-13 ' onSubmit={HandleLogin}>
 
         <span>Email</span>
         <label className="input validator">

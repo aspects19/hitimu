@@ -4,6 +4,7 @@ import { IoMdEyeOff, IoMdEye } from "react-icons/io";
 
 import { useUser } from '../../context/user';
 import { AuthedGuard } from '../../utils/guard';
+import { AppwriteException } from 'appwrite';
 
 export const Route = createFileRoute('/(auth)/signup')({
   component: Signup,
@@ -24,9 +25,10 @@ function Signup() {
     try {
       await signup(email, password, name);
       throw redirect({to: "/"})
-    } catch(e) {
-      setError("Error setting account. Try again")
-      console.error(e);
+    } catch (err) {
+      if (err instanceof AppwriteException) {
+        setError(err.message)
+      }
     }
   };
 
@@ -35,8 +37,8 @@ function Signup() {
     <div className='flex flex-col w-full items-center pt-6'>
 			
       {error && <p className="text-red-500">{error}</p>}
-      <form className='flex flex-col' onSubmit={handleSignup}>
-        <span className='mt-6 mb-1 ml-1 '>Email</span>
+      <form className='flex mx-auto items-center pt-5 flex-col' onSubmit={handleSignup}>
+        <span className='input-label mt-4 mb-1 ml-1 mr-auto'>Email</span>
         <label className="input validator">
           <svg className="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
             <g
@@ -54,41 +56,41 @@ function Signup() {
         </label>
         <div className="validator-hint hidden">Enter valid email address</div>
 
-        <span className='mt-4 mb-1 ml-1'>Password</span>
+        <span className=' input-label mt-4 mb-1 ml-1 mr-auto'>Password</span>
         <label className="input validator">
-                  <svg className="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                    <g
-                      strokeLinejoin="round"
-                      strokeLinecap="round"
-                      strokeWidth="2.5"
-                      fill="none"
-                      stroke="currentColor"
-                    >
-                      <path
-                        d="M2.586 17.414A2 2 0 0 0 2 18.828V21a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h1a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h.172a2 2 0 0 0 1.414-.586l.814-.814a6.5 6.5 0 1 0-4-4z"
-                      ></path>
-                      <circle cx="16.5" cy="7.5" r=".5" fill="currentColor"></circle>
-                    </g>
-                  </svg>
-                  <input
-                    type={showPassword ? 'text' : 'password'}
-                    required
-                    placeholder="Password"
-                    pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
-                    title="Must be more than 8 characters, including number, lowercase letter, uppercase letter"
-                    onChange={e => setPassword(e.target.value)}
-                    value={password}
-                  />
-                  <span className='text-gray-500/25 cursor-pointer ' onClick={()=>setshowPassword(!showPassword)}>
-                    {showPassword ? <IoMdEyeOff size={20} /> : <IoMdEye size={20} />}
-                  </span>
-                </label>
+          <svg className="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <g
+              strokeLinejoin="round"
+              strokeLinecap="round"
+              strokeWidth="2.5"
+              fill="none"
+              stroke="currentColor"
+            >
+              <path
+                d="M2.586 17.414A2 2 0 0 0 2 18.828V21a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h1a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h.172a2 2 0 0 0 1.414-.586l.814-.814a6.5 6.5 0 1 0-4-4z"
+              ></path>
+              <circle cx="16.5" cy="7.5" r=".5" fill="currentColor"></circle>
+            </g>
+          </svg>
+          <input
+            type={showPassword ? 'text' : 'password'}
+            required
+            placeholder="Password"
+            pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+            title="Must be more than 8 characters, including number, lowercase letter, uppercase letter"
+            onChange={e => setPassword(e.target.value)}
+            value={password}
+          />
+          <span className='text-gray-500/25 cursor-pointer ' onClick={()=>setshowPassword(!showPassword)}>
+            {showPassword ? <IoMdEyeOff size={20} /> : <IoMdEye size={20} />}
+          </span>
+        </label>
         <p className="validator-hint hidden">
           Must be more than 8 characters, including
           <br />At least one number <br />At least one lowercase letter <br />At least one uppercase letter
         </p>
 
-        <span className='mt-4 mb-1 ml-1'>Name</span>
+        <span className='input-label mt-4 mb-1 ml-1 mr-auto'>Name</span>
         <label className="input validator">
           <svg className="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
             <g
@@ -119,7 +121,7 @@ function Signup() {
           <br />containing only letters, numbers or dash
         </p>
         
-        <div className=' flex flex-col mr-12 gap-4 items-center'>
+        <div className=' flex flex-col  '>
           <button className=" btn min-w-[322px] btn-outline btn-accent w-full" type="submit" > Login </button>
           <p >Have an account already? <a href='/login' className=' link-primary'>Sign in</a></p>
         </div>

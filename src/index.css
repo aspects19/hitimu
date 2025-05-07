@@ -13,3 +13,9 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+@supports (-moz-appearance:none) {
+  .input-label {
+    margin-left: 25px;
+  }
+}
+

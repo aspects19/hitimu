@@ -26,9 +26,9 @@ export function UserProvider({children}: {children: React.ReactNode} ) {
     try {
       const accountData = await account.get();
       setUser(accountData);
-    } catch (err) {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    } catch (error) {
       setUser(null);
-      console.log(err); 
     } 
   }
 
@@ -54,9 +54,6 @@ export function UserProvider({children}: {children: React.ReactNode} ) {
         }
       )
       
-    } catch (err) {
-      console.error("Error creating account:", err);
-      throw err;
     } finally {
       setIsLoading(false)
     }
@@ -68,9 +65,7 @@ export function UserProvider({children}: {children: React.ReactNode} ) {
       await account.createEmailPasswordSession(email, password);
       const accountData = await account.get();
       setUser(accountData);
-    } catch (err) {
-      console.error("Error logging in:", err);
-      throw err;
+
     }finally {
       setIsLoading(false)
     }
