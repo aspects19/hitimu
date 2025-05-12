@@ -47,13 +47,16 @@ function RouteComponent() {
 			}
 		}, [user, title]);
   return (
-    <div className='flex flex-col pt-10 items-center justify-center'>
-      <SearchBar/>
-			{ loading ? 
-        <div className="card w-48 h-32 bg-base-200 animate-pulse"></div> :
-        <DocumentList documents={docs} />
-      }
-			<Footer/>
+    <div>
+      <div className='flex flex-col pt-10 pb-8 items-center justify-center'>
+        <SearchBar/>
+        { loading ? 
+          <div className="card w-48 h-32 bg-base-200 animate-pulse"></div> :
+          <DocumentList documents={docs} />
+        }
+        
+      </div>
+      <Footer/>
     </div>
   )
 }

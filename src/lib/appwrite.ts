@@ -45,7 +45,7 @@ export const uploadFile = async (userId: string, file: File, title: string, desc
             description: description,
             documentUrl: fileUrl,
             createdAt: new Date().toISOString(),
-            user: userId,
+            uploader: userId,
         },
         ['read("any")', `write("user:${userId}")`]
     );
@@ -66,7 +66,7 @@ export const getUserDocs = async (userId: string, limit: number = 10): Promise<M
     const posts = await database.listDocuments(
         config.databaseId,
         config.documentCollectionId,
-        [Query.equal("user", userId), Query.limit(limit)]
+        [Query.equal("uploader", userId), Query.limit(limit)]
     );
     
     return posts.documents;
@@ -76,7 +76,6 @@ export const getUserDocs = async (userId: string, limit: number = 10): Promise<M
 export const getSearchDocs = async (query: string, limit: number = 10 ): Promise<Models.Document[]> => {
     const queries = [Query.limit(limit)]
     if (query && query.trim() !== "") {queries.push(Query.search("title", query))}
-    console.log(queries);
     
     const posts = await database.listDocuments(
         config.databaseId,

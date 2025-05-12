@@ -29,7 +29,7 @@ function SearchBar() {
         </svg>
         <input type="search" required placeholder="Search" value={query} onChange={(e) => setquery(e.target.value)} />
       </label>
-      <button className=" flex btn w-full  md:w-16 md:mt-10 md:ml-[-7px] btn-accent mt-4" onClick={handleSearch}>Search</button>
+      <button className=" flex btn w-full  md:w-16 md:mt-10 md:ml-[-7px] btn-primary mt-4" onClick={handleSearch}>Search</button>
     </div>
   )
 }

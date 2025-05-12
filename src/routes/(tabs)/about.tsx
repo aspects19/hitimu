@@ -38,13 +38,13 @@ function AboutPage() {
             </p>
 
           </div>
-        </div>
+      </div>
 
         <h2 className="text-xl font-semibold mt-8  bg-gradient-to-r from-[#6ac37e]  to-[#0a9684] bg-clip-text text-transparent">Our values</h2>
       <div className="grid  grid-cols-1  md:grid-cols-3 gap-6 mt-8 w-full">
         
         <div className=" flex items-center card border-[1px] border-gray-100/20 mx-auto  bg-base-200/60 hover:bg-blue-400/10 hover:scale-101 shadow-md p-6">
-        <div className='text-[#aad10f] pb-3'>< AiFillSafetyCertificate size={70} /></div>
+          <div className='text-[#aad10f] pb-3'>< AiFillSafetyCertificate size={70} /></div>
           <h2 className="text-xl font-semibold mb-2">Quality</h2>
           <p>
             The quality of the documents submitted is of good quality as it comes from student submissions directly.
@@ -52,7 +52,7 @@ function AboutPage() {
         </div>
 
         <div className=" flex items-center card border-[1px] border-gray-100/20 mx-auto  bg-base-200/60 hover:bg-blue-400/10 hover:scale-101 shadow-md p-6">
-        <div className='text-[#0a963d] pb-3'>< RiOpenSourceFill size={70} /></div>
+          <div className='text-[#0a963d] pb-3'>< RiOpenSourceFill size={70} /></div>
           <h2 className="text-xl font-semibold mb-2">Open Source</h2>
           <p>
             The project is fully open source and community-driven. You can view the code on <a className="text-primary underline" href="https://github.com/aspects19/hitimu" target="_blank">GitHub</a>.
@@ -92,8 +92,8 @@ function AboutPage() {
                 <span className="text-gray-400">Telecommunication and IT Student & Web Developer</span>
             </div>
         </div>
+      </div>
+      <Footer/>
     </div>
-    <Footer/>
-</div>
   );
 }

@@ -4,12 +4,15 @@ import { MdOutlineMarkEmailUnread } from "react-icons/md"
 
 function Footer() {
   return (
-    <footer className=" mt-3 footer sm:footer-horizontal bg-base-300 text-base-content p-10">
+    <footer className="flex bg-base-300/40 flex-col w-full" >
+      <div className=" footer sm:footer-horizontal text-base-content p-10">
           <nav>
             <h6 className="footer-title">Quick navigation</h6>
-            <a href="/about" className="link link-hover hover:text-blue-400">About us</a>
+            <a href="/" className="link link-hover hover:text-blue-400">Home</a>
+            <a href="/login" className="link link-hover hover:text-blue-400">Sign In</a>
             <a href="/about" className="link link-hover hover:text-blue-400">Contact</a>
             <a href="/upload" className="link link-hover hover:text-blue-400">Upload document</a>
+            <a href="/about" className="link link-hover hover:text-blue-400">About us</a>
           </nav>
         <nav>
           <h6 className="footer-title">Social</h6>
@@ -25,7 +28,13 @@ function Footer() {
             </a>
           </div>
         </nav>
-      </footer>
+      </div> 
+      <div className=" pt-5 pb-8 border-t border-gray-800 text-center">
+        <p className="text-sm text-gray-400 ">
+          © <span id="current-year">2025</span> Hitimu. All rights reserved.
+        </p>
+      </div> 
+    </footer>
   )
 }
 

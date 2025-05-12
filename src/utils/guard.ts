@@ -4,7 +4,6 @@ import { account } from '../lib/appwrite';
 export async function GuestGuard() {
     const user = await account.get().catch(()=> null);
     if (!user) throw redirect({to: "/login"})
-    // return user;
 }
 
 export async function AuthedGuard() {

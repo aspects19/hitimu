@@ -11,7 +11,7 @@ export const Route = createFileRoute('/(tabs)/profile')({
   beforeLoad: async() => GuestGuard()
 })
 
-function RouteComponent() { // const Emerand = '#0668f8'; const bondi = '#0a9684';
+function RouteComponent() { 
   const [documents, setDocuments] = useState<Models.Document[]| []>([]);
   const [loading, setLoading] = useState(false);
 
@@ -35,23 +35,35 @@ function RouteComponent() { // const Emerand = '#0668f8'; const bondi = '#0a9684
       fetchDocuments();
     }
   }, [user]);
-
+  
   return (
   <div className='flex flex-col items-center pt-20 justify-center h-full'>
     
     <div className="avatar">
-      <div className="w-24 rounded-full ring ring-primary ring-offset-base-300 ring-offset-2">
-        <img className='p-[3px] rounded-full' src="/assets/default-pp.webp" />
+      <div className="w-24 rounded-full ring ring-offset-green-300 ring-offset-0 p-1">
+        {user ? (
+          <div className=" w-full h-full flex items-center justify-center rounded-full text-7xl font-extrabold bg-accent/30">
+            {user.name.toUpperCase()[0]}
+          </div>
+        ) : (
+          <img
+            alt="No user"
+            src="/assets/no-user.png"
+          />
+        )}
       </div>
     </div>
     <span className='text-xl font-bold mt-4'>{user?.name}</span>
     <span className='text-base mt-1'>Student</span>
     <span className='text-xl font-bold mt-4'>Your Uploads</span>
     <div className='flex w-full flex-row gap-5 overflow-x-auto whitespace-nowrap mt-4 max-w-72 '>
-
-      { loading ? 
+      {loading ? 
         <div className="card w-48 h-32 bg-base-200 animate-pulse"></div> :
-        <DocumentList documents={documents} />
+        (!documents.length ? 
+          <p>You Haven't uploaded a document yet</p> :
+          <DocumentList documents={documents} />
+        )
+        
       }
     </div>
   </div>
