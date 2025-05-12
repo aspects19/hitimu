@@ -1,60 +1,45 @@
 # Hitimu | A hackathon project
-
+https://hitimu.vercel.com
 ### Introduction
-University tudents often have a hard time accesing study materials. 
-**Hitimu** is a platform for student that simplifys sharing of study material. Students can upload, view, download and comment on documents like notes, past papers, essays, and much more. 
+Access to study material by students is a major barrier faced by students. Platforms that offer this service eg **Studocu** often have paywalls and strict upload policies preventing easy access to study material.
+**Hitimu** is a platform for students that simplifies sharing of study material. Students can upload, view, download, and comment on documents like notes, past papers, essays, and much more. 
 
-![React Native](https://img.shields.io/badge/React%20Native-v0.76.6-blue?style=flat&logo=react&logoColor=white)
-![JavaScript](https://img.shields.io/badge/JavaScript-vES15-yellow?style=flat&logo=javascript&logoColor=white)
-![Expo](https://img.shields.io/badge/Expo-v52.0.26-black?style=flat&logo=expo&logoColor=white)
-![NativeWind](https://img.shields.io/badge/NativeWind-v4.1.23-green?style=flat&logo=tailwind-css&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-v5.7.2-blue?style=flat&logo=typescript&logoColor=white)
+![Appwrite](https://img.shields.io/badge/Appwrite-v17.0.2-pink?style=flat&logo=appwrite&logoColor=white)
+![Vite](https://img.shields.io/badge/Vite-v6.3.1-purple?style=flat&logo=vite&logoColor=white)
+![TanStack Router](https://img.shields.io/badge/TanStack%20Router-v1.117.0-orange?style=flat&logo=react-router&logoColor=white)
+![DaisyUI](https://img.shields.io/badge/DaisyUI-v5.0.28-green?style=flat&logo=tailwindcss&logoColor=white)
+![React](https://img.shields.io/badge/React-v19.0.0-blue?style=flat&logo=react&logoColor=white)
 
 ## Features
-
-- Current weather information (temperature, humidity, wind speed, etc.).
-- 7-hour weather forecast.
-- Location-based weather (using  search by city).
-- Responsive and intuitive design for mobile devices.
-
+- **Upload and Share**: Students can upload study materials like notes, past papers, and essays.
+- **Search Functionality**: Quickly find study materials using keywords.
+- **User Profiles**: View and manage your uploaded documents.
+- **Secure Authentication**: Login and signup using email/password or third-party providers like GitHub and Google.
+- **Responsive Design**: Fully responsive UI built with TailwindCSS and DaisyUI.
+- **Open Source**: Community-driven and open for contributions.
 
 ## Installation
-
-To run the Weather App locally, follow these steps:
+To set up the project locally, follow these steps:
 
 1. Clone the repository:
-
    ```sh
-   git clone https://github.com/aspects19/weather-app.git
+      git clone https://github.com/aspects19/hitimu.git
+      cd hitimu
    ```
-
-2. Navigate into the project directory:
-
+2. Make your own **Appwrite** credentials   and replace them in ` /lib/appwrite.ts `
+   
+3. Install project dependencies
    ```sh
-   cd weather-app
+      yarn install  
    ```
-
-3. Install dependencies
-
-    ```sh
-    npm install
-    ```
-
-4. Start app
-
+4. Run your app 
    ```sh
-   npm start
+      yarn dev 
    ```
-
-5. Scan the QR code on the terminal on Expo Go App on your phone.
-6. 🎉 Your app is up and running. View it on Expo Go mobile app .
-
-## Building the app
-
-You can download the prebuild apk of this app from [Releases](https://github.com/aspects19/weather-app/releases) section or build it from the source code as shown earlier.
 
 ## Contributions
-
-If You wish to make contributions to this project such as reporting issues and bugs, fixing them and adding features, take a look at [contribution guide](https://github.com/aspects19/weather-app/CONTRIBUTING.md)
+If You wish to make contributions to this project such as reporting issues and bugs, fixing them and adding features, take a look at [contribution guide](https://github.com/aspects19/hitimu/blob/main/CONTRIBUTING.md)
 
 ## License
 
@@ -62,4 +47,3 @@ This project is licensed under the MIT License – see the [LICENSE](https://git
 
 ##
 
-Thanks for checking out the Weather App! 🌦️ Feel free to open issues, fork the repository, or contribute to making it even better!
