@@ -27,7 +27,7 @@ To set up the project locally, follow these steps:
       git clone https://github.com/aspects19/hitimu.git
       cd hitimu
    ```
-2. Make your own **Appwrite** credentials   and replace them in ` /lib/appwrite.ts `
+2. Registern for your own **Appwrite** credentials   and replace them in ` src/lib/appwrite.ts `
    
 3. Install project dependencies
    ```sh
