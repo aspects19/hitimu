@@ -35,7 +35,7 @@ Designs contributions are also welcome.<br>
 ## 🧪 Testing
 
 - All new features must include tests (unit or integration).
-- Use [Jest](https://jestjs.io/) for unit tests.
+- Use [Vitest](https://vitest.dev/) for unit tests.
 - Run `npm test` locally before pushing.
 
 ---
