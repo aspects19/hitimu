@@ -1,4 +1,4 @@
-import { createFileRoute } from '@tanstack/react-router';
+import { createFileRoute } from '@tanstack/react-router'
 import { GuestGuard } from '../utils/guard';
 import { useState } from 'react';
 import { useUser } from '../context/user';
@@ -8,15 +8,16 @@ import { AppwriteException } from 'appwrite';
 
 export const Route = createFileRoute('/upload')({
   component: RouteComponent,
-  beforeLoad: async () => GuestGuard(),
-});
+  beforeLoad: async() => GuestGuard()
+})
+
 
 function RouteComponent() {
   const [file, setFile] = useState<File | null>(null);
-  const [title, setTitle] = useState<string>('');
-  const [description, setDescription] = useState<string>('');
+  const [title, setTitle] = useState<string>("");
+  const [description, setDescription] = useState<string>("");
   const [uploadStatus, setUploadStatus] = useState<string | null>(null);
-  const [error, setError] = useState<string>('');
+  const [error, setError] = useState<string>("");
 
   const { user } = useUser();
 
@@ -32,53 +33,39 @@ function RouteComponent() {
       setUploadStatus('Please select a file.');
       return;
     }
-    try {
+    try{
       if (user) {
-        uploadFile(user.$id, file, title, description);
+        uploadFile(user.$id, file, title, description); 
       } else {
         setUploadStatus('User is not logged in.');
       }
       setUploadStatus('File uploaded successfully!');
       setFile(null);
-      setTitle('');
-      setDescription('');
+      setTitle("")
+      setDescription("");
+  
     } catch (err) {
       if (err instanceof AppwriteException) {
-        setError(err.message);
+        setError(err.message)
       }
     }
+    
   };
 
   return (
-    <div className="my-auto flex h-full flex-col items-center justify-between">
-      <div className="mx-auto max-w-md p-4">
-        <h2 className="mb-4 text-center text-2xl font-bold">Upload Study Material</h2>
+    <div className='flex flex-col h-full items-center justify-between my-auto'>
+      <div className="max-w-md mx-auto p-4">
+        <h2 className="text-2xl font-bold mb-4 text-center">Upload Study Material</h2>
         {uploadStatus && <p className="text-red-500">{uploadStatus}</p>}
-        {error && <p className="text-red-500/50">{error}</p>}
-        <div className="flex grow flex-col">
-          <input
-            placeholder="Document title"
-            className="input mb-3"
-            onChange={(e) => setTitle(e.target.value)}
-          />
-          <textarea
-            placeholder="Description"
-            className="textarea textarea-bordered mb-3"
-            onChange={(e) => setDescription(e.target.value)}
-          ></textarea>
+        {error && <p className='text-red-500/50'>{error}</p>}
+        <div className='flex flex-col grow'>
+          <input placeholder='Document title' className=' input mb-3' onChange={(e) => setTitle(e.target.value)} />
+          <textarea placeholder="Description" className="textarea textarea-bordered mb-3" onChange={(e) =>setDescription(e.target.value)}></textarea> 
           <input type="file" className="file-input mb-3" onChange={handleFileChange} required />
-          <button
-            onClick={() => {
-              if (!file) return;
-              handleUpload(file);
-            }}
-            className="btn btn-accent flex max-w-80"
-          >
-            Upload
-          </button>
+          <button onClick={()=>{ if (!file) return; handleUpload(file)}} className="btn btn-accent flex max-w-80 ">Upload</button>
         </div>
       </div>
-      <Footer />
+      <Footer/>
     </div>
   );
 }

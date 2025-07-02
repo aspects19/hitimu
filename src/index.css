@@ -1,8 +1,6 @@
-@import 'tailwindcss';
+@import "tailwindcss";
 @plugin "daisyui" {
-  themes:
-    light --default,
-    dark --prefersdark;
+  themes: light --default, dark --prefersdark;
 }
 
 :root {
@@ -15,8 +13,9 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-@supports (-moz-appearance: none) {
+@supports (-moz-appearance:none) {
   .input-label {
     margin-left: 25px;
   }
 }
+

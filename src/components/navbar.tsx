@@ -6,7 +6,7 @@ interface NavbarProps {
   placeholder?: string;
 }
 
-const Navbar: React.FC<NavbarProps> = ({ placeholder = 'Search' }) => {
+const Navbar: React.FC<NavbarProps> = ({ placeholder = "Search" }) => {
   const { user, logout } = useUser();
   const navigate = useNavigate();
 
@@ -14,7 +14,7 @@ const Navbar: React.FC<NavbarProps> = ({ placeholder = 'Search' }) => {
     <div className="navbar bg-base-100 shadow-sm">
       <div className="flex-1">
         <a className="btn btn-ghost text-xl">
-          <img className="mr-auto ml-4 h-8" src="/assets/hitimu-logo.png" alt="Logo" />
+          <img className="h-8 ml-4 mr-auto" src="/assets/hitimu-logo.png" alt="Logo" />
         </a>
       </div>
       <div className="flex gap-2">
@@ -24,14 +24,21 @@ const Navbar: React.FC<NavbarProps> = ({ placeholder = 'Search' }) => {
           className="input input-bordered w-24 md:w-auto"
         />
         <div className="dropdown dropdown-end">
-          <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
+          <div
+            tabIndex={0}
+            role="button"
+            className="btn btn-ghost btn-circle avatar"
+          >
             <div className="w-10 rounded-full">
               {user ? (
-                <div className="bg-accent/30 flex h-10 items-center justify-center rounded-full pb-1 text-2xl font-extrabold">
+                <div className="flex items-center justify-center pb-1 h-10 rounded-full text-2xl font-extrabold bg-accent/30">
                   {user.name.toUpperCase()[0]}
                 </div>
               ) : (
-                <img alt="No user" src="/assets/no-user.png" />
+                <img
+                  alt="No user"
+                  src="/assets/no-user.png"
+                />
               )}
             </div>
           </div>
