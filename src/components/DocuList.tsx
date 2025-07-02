@@ -17,12 +17,12 @@ const DocumentList = ({ documents }: { documents: Models.Document[] }) => {
     fetchPreviews();
   }, [documents]);
 
-  if (!documents.length) return <p className='mt-4' >No documents found.</p>;
+  if (!documents.length) return <p className="mt-4">No documents found.</p>;
 
   return (
-    <div className="grid grid-cols-1 mt-6 md:grid-cols-2 gap-4">
+    <div className="mt-6 grid grid-cols-1 gap-4 md:grid-cols-2">
       {documents.map((doc: Models.Document) => (
-        <div key={doc.$id} className="card bg-base-100 shadow-md p-4">
+        <div key={doc.$id} className="card bg-base-100 p-4 shadow-md">
           <h3 className="text-lg font-semibold">{doc.title}</h3>
           <p className="text-sm text-gray-600">{doc.description}</p>
           <a
@@ -31,9 +31,7 @@ const DocumentList = ({ documents }: { documents: Models.Document[] }) => {
             rel="noopener noreferrer"
             className="btn btn-sm btn-outline mt-2"
           >
-            {previewUrls[doc.$id] && (
-              <img src={previewUrls[doc.$id]} alt={doc.title} />
-            )}
+            {previewUrls[doc.$id] && <img src={previewUrls[doc.$id]} alt={doc.title} />}
           </a>
         </div>
       ))}
