@@ -1,0 +1,20 @@
+# Build and dependency folders
+node_modules
+build
+dist
+coverage
+.next
+out
+
+# Configuration and lock files
+package-lock.json
+pnpm-lock.yaml
+yarn.lock
+
+# Ignore all JSON and Markdown files (optional)
+*.json
+*.md
+
+# Ignore env files
+.env*
+
