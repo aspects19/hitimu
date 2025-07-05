@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React from 'react';
 import { useNavigate } from '@tanstack/react-router';
 import { useUser } from '../context/user';
 
@@ -9,29 +9,6 @@ interface NavbarProps {
 const Navbar: React.FC<NavbarProps> = ({ placeholder = 'Search' }) => {
   const { user, logout } = useUser();
   const navigate = useNavigate();
-  const [searchQuery, setSearchQuery] = useState('');
-
-  // Hardcoded "API" results
-  const materials = [
-    'React Basics',
-    'Advanced Node.js',
-    'TypeScript Essentials',
-    'Frontend Design Patterns',
-  ];
-
-  const filtered = materials.filter((item) =>
-    item.toLowerCase().includes(searchQuery.toLowerCase())
-  );
-
-  // Ref for search input
-  const inputRef = useRef<HTMLInputElement>(null);
-  const [inputWidth, setInputWidth] = useState<number>(0);
-
-  useEffect(() => {
-    if (inputRef.current) {
-      setInputWidth(inputRef.current.offsetWidth);
-    }
-  }, [searchQuery]);
 
   return (
     <div className="navbar bg-base-100 sticky top-0 z-50 shadow-sm">
@@ -44,36 +21,12 @@ const Navbar: React.FC<NavbarProps> = ({ placeholder = 'Search' }) => {
       <div className="relative flex gap-2">
         <div className="relative">
           <input
-            ref={inputRef}
             type="text"
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
             placeholder={placeholder}
-            className="input input-bordered w-24 md:w-64"
+            className="input input-bordered w-24 cursor-pointer md:w-64"
+            onClick={() => navigate({ to: '/' })}
+            readOnly
           />
-
-          {searchQuery && (
-            <div
-              className="bg-base-100 absolute z-50 mt-1 rounded border border-gray-300 shadow"
-              style={{ width: inputWidth }}
-            >
-              <p className="px-3 py-2 text-sm font-semibold">Results:</p>
-              {filtered.length > 0 ? (
-                <ul className="px-3 pb-2">
-                  {filtered.map((item, index) => (
-                    <li
-                      key={index}
-                      className="hover:bg-base-200 cursor-pointer rounded px-1 py-1 text-sm"
-                    >
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              ) : (
-                <p className="px-3 pb-2 text-sm text-gray-500">No matching materials found.</p>
-              )}
-            </div>
-          )}
         </div>
 
         <div className="dropdown dropdown-end">
