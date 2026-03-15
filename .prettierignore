@@ -18,3 +18,4 @@ yarn.lock
 # Ignore env files
 .env*
 
+src/routeTree.gen.ts

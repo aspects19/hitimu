@@ -8,84 +8,91 @@
 // You should NOT make any changes in this file as it will be overwritten.
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
-import { Route as rootRouteImport } from './routes/__root';
-import { Route as UploadRouteImport } from './routes/upload';
-import { Route as IndexRouteImport } from './routes/index';
-import { Route as tabsSearchRouteImport } from './routes/(tabs)/search';
-import { Route as tabsProfileRouteImport } from './routes/(tabs)/profile';
-import { Route as tabsAboutRouteImport } from './routes/(tabs)/about';
-import { Route as authSignupRouteImport } from './routes/(auth)/signup';
-import { Route as authLoginRouteImport } from './routes/(auth)/login';
+import { Route as rootRouteImport } from './routes/__root'
+import { Route as UploadRouteImport } from './routes/upload'
+import { Route as IndexRouteImport } from './routes/index'
+import { Route as tabsSearchRouteImport } from './routes/(tabs)/search'
+import { Route as tabsProfileRouteImport } from './routes/(tabs)/profile'
+import { Route as tabsAboutRouteImport } from './routes/(tabs)/about'
+import { Route as authSignupRouteImport } from './routes/(auth)/signup'
+import { Route as authLoginRouteImport } from './routes/(auth)/login'
 
 const UploadRoute = UploadRouteImport.update({
   id: '/upload',
   path: '/upload',
   getParentRoute: () => rootRouteImport,
-} as any);
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
-} as any);
+} as any)
 const tabsSearchRoute = tabsSearchRouteImport.update({
   id: '/(tabs)/search',
   path: '/search',
   getParentRoute: () => rootRouteImport,
-} as any);
+} as any)
 const tabsProfileRoute = tabsProfileRouteImport.update({
   id: '/(tabs)/profile',
   path: '/profile',
   getParentRoute: () => rootRouteImport,
-} as any);
+} as any)
 const tabsAboutRoute = tabsAboutRouteImport.update({
   id: '/(tabs)/about',
   path: '/about',
   getParentRoute: () => rootRouteImport,
-} as any);
+} as any)
 const authSignupRoute = authSignupRouteImport.update({
   id: '/(auth)/signup',
   path: '/signup',
   getParentRoute: () => rootRouteImport,
-} as any);
+} as any)
 const authLoginRoute = authLoginRouteImport.update({
   id: '/(auth)/login',
   path: '/login',
   getParentRoute: () => rootRouteImport,
-} as any);
+} as any)
 
 export interface FileRoutesByFullPath {
-  '/': typeof IndexRoute;
-  '/upload': typeof UploadRoute;
-  '/login': typeof authLoginRoute;
-  '/signup': typeof authSignupRoute;
-  '/about': typeof tabsAboutRoute;
-  '/profile': typeof tabsProfileRoute;
-  '/search': typeof tabsSearchRoute;
+  '/': typeof IndexRoute
+  '/upload': typeof UploadRoute
+  '/login': typeof authLoginRoute
+  '/signup': typeof authSignupRoute
+  '/about': typeof tabsAboutRoute
+  '/profile': typeof tabsProfileRoute
+  '/search': typeof tabsSearchRoute
 }
 export interface FileRoutesByTo {
-  '/': typeof IndexRoute;
-  '/upload': typeof UploadRoute;
-  '/login': typeof authLoginRoute;
-  '/signup': typeof authSignupRoute;
-  '/about': typeof tabsAboutRoute;
-  '/profile': typeof tabsProfileRoute;
-  '/search': typeof tabsSearchRoute;
+  '/': typeof IndexRoute
+  '/upload': typeof UploadRoute
+  '/login': typeof authLoginRoute
+  '/signup': typeof authSignupRoute
+  '/about': typeof tabsAboutRoute
+  '/profile': typeof tabsProfileRoute
+  '/search': typeof tabsSearchRoute
 }
 export interface FileRoutesById {
-  __root__: typeof rootRouteImport;
-  '/': typeof IndexRoute;
-  '/upload': typeof UploadRoute;
-  '/(auth)/login': typeof authLoginRoute;
-  '/(auth)/signup': typeof authSignupRoute;
-  '/(tabs)/about': typeof tabsAboutRoute;
-  '/(tabs)/profile': typeof tabsProfileRoute;
-  '/(tabs)/search': typeof tabsSearchRoute;
+  __root__: typeof rootRouteImport
+  '/': typeof IndexRoute
+  '/upload': typeof UploadRoute
+  '/(auth)/login': typeof authLoginRoute
+  '/(auth)/signup': typeof authSignupRoute
+  '/(tabs)/about': typeof tabsAboutRoute
+  '/(tabs)/profile': typeof tabsProfileRoute
+  '/(tabs)/search': typeof tabsSearchRoute
 }
 export interface FileRouteTypes {
-  fileRoutesByFullPath: FileRoutesByFullPath;
-  fullPaths: '/' | '/upload' | '/login' | '/signup' | '/about' | '/profile' | '/search';
-  fileRoutesByTo: FileRoutesByTo;
-  to: '/' | '/upload' | '/login' | '/signup' | '/about' | '/profile' | '/search';
+  fileRoutesByFullPath: FileRoutesByFullPath
+  fullPaths:
+    | '/'
+    | '/upload'
+    | '/login'
+    | '/signup'
+    | '/about'
+    | '/profile'
+    | '/search'
+  fileRoutesByTo: FileRoutesByTo
+  to: '/' | '/upload' | '/login' | '/signup' | '/about' | '/profile' | '/search'
   id:
     | '__root__'
     | '/'
@@ -94,70 +101,70 @@ export interface FileRouteTypes {
     | '/(auth)/signup'
     | '/(tabs)/about'
     | '/(tabs)/profile'
-    | '/(tabs)/search';
-  fileRoutesById: FileRoutesById;
+    | '/(tabs)/search'
+  fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
-  IndexRoute: typeof IndexRoute;
-  UploadRoute: typeof UploadRoute;
-  authLoginRoute: typeof authLoginRoute;
-  authSignupRoute: typeof authSignupRoute;
-  tabsAboutRoute: typeof tabsAboutRoute;
-  tabsProfileRoute: typeof tabsProfileRoute;
-  tabsSearchRoute: typeof tabsSearchRoute;
+  IndexRoute: typeof IndexRoute
+  UploadRoute: typeof UploadRoute
+  authLoginRoute: typeof authLoginRoute
+  authSignupRoute: typeof authSignupRoute
+  tabsAboutRoute: typeof tabsAboutRoute
+  tabsProfileRoute: typeof tabsProfileRoute
+  tabsSearchRoute: typeof tabsSearchRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
     '/upload': {
-      id: '/upload';
-      path: '/upload';
-      fullPath: '/upload';
-      preLoaderRoute: typeof UploadRouteImport;
-      parentRoute: typeof rootRouteImport;
-    };
+      id: '/upload'
+      path: '/upload'
+      fullPath: '/upload'
+      preLoaderRoute: typeof UploadRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
-      id: '/';
-      path: '/';
-      fullPath: '/';
-      preLoaderRoute: typeof IndexRouteImport;
-      parentRoute: typeof rootRouteImport;
-    };
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/(tabs)/search': {
-      id: '/(tabs)/search';
-      path: '/search';
-      fullPath: '/search';
-      preLoaderRoute: typeof tabsSearchRouteImport;
-      parentRoute: typeof rootRouteImport;
-    };
+      id: '/(tabs)/search'
+      path: '/search'
+      fullPath: '/search'
+      preLoaderRoute: typeof tabsSearchRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/(tabs)/profile': {
-      id: '/(tabs)/profile';
-      path: '/profile';
-      fullPath: '/profile';
-      preLoaderRoute: typeof tabsProfileRouteImport;
-      parentRoute: typeof rootRouteImport;
-    };
+      id: '/(tabs)/profile'
+      path: '/profile'
+      fullPath: '/profile'
+      preLoaderRoute: typeof tabsProfileRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/(tabs)/about': {
-      id: '/(tabs)/about';
-      path: '/about';
-      fullPath: '/about';
-      preLoaderRoute: typeof tabsAboutRouteImport;
-      parentRoute: typeof rootRouteImport;
-    };
+      id: '/(tabs)/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof tabsAboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/(auth)/signup': {
-      id: '/(auth)/signup';
-      path: '/signup';
-      fullPath: '/signup';
-      preLoaderRoute: typeof authSignupRouteImport;
-      parentRoute: typeof rootRouteImport;
-    };
+      id: '/(auth)/signup'
+      path: '/signup'
+      fullPath: '/signup'
+      preLoaderRoute: typeof authSignupRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/(auth)/login': {
-      id: '/(auth)/login';
-      path: '/login';
-      fullPath: '/login';
-      preLoaderRoute: typeof authLoginRouteImport;
-      parentRoute: typeof rootRouteImport;
-    };
+      id: '/(auth)/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof authLoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -169,7 +176,7 @@ const rootRouteChildren: RootRouteChildren = {
   tabsAboutRoute: tabsAboutRoute,
   tabsProfileRoute: tabsProfileRoute,
   tabsSearchRoute: tabsSearchRoute,
-};
+}
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
-  ._addFileTypes<FileRouteTypes>();
+  ._addFileTypes<FileRouteTypes>()
